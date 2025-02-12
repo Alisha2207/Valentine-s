@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Valentine's Love Letter Generator | CodingPorium</title>
+  </head>
+  <style>
+    /*Import Poppins Font*/
+    @import url("https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap");
+
+    /*selection*/
+    ::selection {
+      color: white;
+      background: red;
+    }
+
+    body {
+      background: linear-gradient(135deg, #ff758c, #ff7eb3);
+      font-family: Poppins;
+      text-align: center;
+      color: white;
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    /* Container for the content */
+    .container {
+      background: rgba(255, 255, 255, 0.2);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      width: 90%;
+      max-width: 400px;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    /* Inputs */
+    input {
+      padding: 10px;
+      width: 80%;
+      margin: 10px 0;
+      font-family: poppins;
+      border-radius: 10px;
+      border: none;
+      font-size: 1rem;
+    }
+
+    /* Button */
+    button {
+      background: #ff4081;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 10px;
+      font-family: poppins;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: transform 0.2s, background 0.3s;
+    }
+
+    button:hover {
+      background: #ff1e63;
+      font-family: poppins;
+      transform: scale(1.1);
+    }
+
+    /* Love letter message */
+    #messageOutput {
+      margin-top: 20px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      opacity: 0;
+      animation: fadeIn 1s forwards;
+    }
+
+    /* Heart animation */
+    @keyframes float {
+      0% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+      100% {
+        transform: translateY(0);
+      }
+    }
+
+    h1 {
+      animation: float 2s infinite;
+    }
+
+    /*Fade in effect*/
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+  </style>
+  <body>
+    <div class="container">
+      <h1>💖 Valentine's Love Letter 💖</h1>
+      <p>
+        Enter your name and your partner's name to receive a lovely message!💌
+      </p>
+      <input type="text" id="yourName" placeholder="Your Name" />
+      <input type="text" id="partnerName" placeholder="Your Partner's Name" />
+      <button id="generateBtn">Generate Love Letter</button>
+      <div id="messageOutput"></div>
+    </div>
+
+    <script>
+      const generateBtn = document.getElementById("generateBtn");
+      const messageOutput = document.getElementById("messageOutput");
+
+      //List of messages
+      const loveMessages = [
+        "You are my sunshine on the cloudiest days. ☀️💖",
+        "Every moment with you is like a dream come true. ✨❤️",
+        "You make my heart skip a beat every time I see you! 💓",
+        "Life is beautiful because I have you in it. 🌹💑",
+        "No words can describe how much you mean to me! 💕",
+        "You're the missing piece in my puzzle of life. 🧩❤️",
+        "Every day with you is Valentine's Day for me. 😘💘",
+        "Falling in love with you is the best thing that ever happened to me. 💑💖",
+        "You're the melody to my heart’s song. 🎶💞",
+        "I love you more than words can ever express. 💕",
+      ];
+
+      generateBtn.addEventListener("click", () => {
+        const yourName = document.getElementById("yourName").value.trim();
+        const partnerName = document.getElementById("partnerName").value.trim();
+
+        if (yourName && partnerName) {
+          const randomMessage =
+            loveMessages[Math.floor(Math.random() * loveMessages.length)];
+          messageOutput.innerHTML = `Dear <span style=color:"#ffeb3b">${partnerName}</span>,<br> ${randomMessage}<br> Love, <span style="color:#ffeb3b;">${yourName}</span>❤️`;
+          messageOutput.style.opacity = "1";
+        } else {
+          messageOutput.textContent =
+            "So, you're either single or you don't have a name. Please give your names bro";
+          messageOutput.style.opacity = "1";
+        }
+      });
+    </script>
+  </body>
+</html>
